@@ -78,7 +78,6 @@ Denenen tüm modellerin karşılaştırması ve cross-validation sonuçları `pr
 | `proje.ipynb` | Ana analiz ve modelleme not defteri (27 bölüm: problem tanımından final modele) |
 | `turkishCF.csv` | Ham veri seti |
 | `fundpilot_final_model.joblib` | Kaydedilmiş final model (XGBoost + karar eşiği + girdi seçenekleri) |
-| `FundPilot_TR_Sunum.pptx` | 5 slaytlık proje sunumu |
 | `requirements.txt` | Test edilen Python kütüphane sürümleri |
 | `assets/` | README'de kullanılan grafik görselleri (notebook çıktılarından) |
 
@@ -91,7 +90,7 @@ jupyter notebook proje.ipynb
 
 Notebook, `requirements.txt` içinde belirtilen sürümlerle (pandas 2.2, numpy 2.1, scikit-learn 1.6, xgboost 3.4, shap 0.52) test edilmiştir.
 
-Kaydedilmiş modeli tekrar yüklemek için:
+Final model (XGBoost + karar eşiği + girdi seçenekleri) repoda `fundpilot_final_model.joblib` olarak hazır bulunur; notebook'u baştan çalıştırmadan doğrudan yüklenebilir (notebook çalıştırıldığında bu dosya yeniden oluşturulur):
 
 ```python
 import joblib
