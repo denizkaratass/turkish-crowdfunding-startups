@@ -36,7 +36,8 @@ Model kesin bir sonuç garantisi değil; bir **karar destek çıktısı** üretm
 
 - **Dosya:** `turkishCF.csv`
 - **Boyut:** 1.628 kampanya, 38 ham sütun
-- **Kaynak:** Türkiye'deki kitle fonlama platformlarından (fongogo, crowdfon, fonbulucu, arıkovanı, buluşum, ideanest) derlenmiş kampanya kayıtları
+- **Kaynak:** [UCI Machine Learning Repository – Turkish Crowdfunding Startups](https://archive.ics.uci.edu/dataset/1025/turkish+crowdfunding+startups) (Kilinc & Aydin, 2023). Türkiye'deki kitle fonlama platformlarından (fongogo, crowdfon, fonbulucu, arıkovanı, buluşum, ideanest) derlenmiş kampanya kayıtları
+- **Lisans:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Sınıf dengesi:** %76.9 başarısız · %23.1 başarılı (dengesiz veri seti)
 
 Kampanya sonucunu doğrudan yansıtan veya kampanya sürecinde oluşan değişkenler (`toplanan_tutar`, `destek_orani`, `destekci_sayisi`, `guncellemeler`, `yorumlar` vb.) **leakage** riski nedeniyle modelden çıkarılmıştır. Tüm ham sütunların tipi ve anlamı `proje.ipynb` içindeki **Veri Sözlüğü** bölümünde ayrıntılı olarak listelenmiştir.
