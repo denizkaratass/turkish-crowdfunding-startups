@@ -90,7 +90,9 @@ jupyter notebook proje.ipynb
 
 Notebook, `requirements.txt` içinde belirtilen sürümlerle (pandas 2.2, numpy 2.1, scikit-learn 1.6, xgboost 3.4, shap 0.52) test edilmiştir.
 
-Final model (XGBoost + karar eşiği + girdi seçenekleri) repoda `fundpilot_final_model.joblib` olarak hazır bulunur; notebook'u baştan çalıştırmadan doğrudan yüklenebilir (notebook çalıştırıldığında bu dosya yeniden oluşturulur):
+Final model (XGBoost + karar eşiği + girdi seçenekleri) repoda `fundpilot_final_model.joblib` olarak hazır bulunur; notebook'u baştan çalıştırmadan doğrudan yüklenebilir (notebook çalıştırıldığında bu dosya yeniden oluşturulur). Model scikit-learn 1.6.1 ile kaydedildiği için yüklemeden önce `requirements.txt` içindeki sürümlerin kurulu olması gerekir.
+
+`yeni_kampanya_df`, `package["raw_columns"]` içindeki 21 sütunu içermelidir; `platform_adi`, `kitle_fonlamasi_turu`, `kategori`, `fon_sekli` ve `bolge` sütunlarının geçerli değerleri `package["input_options"]` içinde yer alır; `tanitim_videosu`, `web_sitesi` ve `sosyal_medya` ise `"var"` / `"yok"` değerlerini alır. Model ayrıca notebook'taki feature engineering adımında üretilen `dijital_varlik_sayisi` sütununu bekler:
 
 ```python
 import joblib
@@ -99,8 +101,15 @@ package = joblib.load("fundpilot_final_model.joblib")
 model = package["model"]
 threshold = package["threshold"]
 
-olasilik = model.predict_proba(yeni_kampanya_df)[:, 1]
-tahmin = int(olasilik >= threshold)
+df = yeni_kampanya_df[package["raw_columns"]].copy()
+df["dijital_varlik_sayisi"] = (
+    (df["tanitim_videosu"] == "var").astype(int)
+    + (df["web_sitesi"] == "var").astype(int)
+    + (df["sosyal_medya"] == "var").astype(int)
+)
+
+olasilik = model.predict_proba(df)[:, 1]
+tahmin = (olasilik >= threshold).astype(int)  # 1 = başarılı, 0 = başarısız
 ```
 
 ## Mini Tahmin Uygulaması
